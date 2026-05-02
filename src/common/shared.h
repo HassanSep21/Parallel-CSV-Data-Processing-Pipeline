@@ -4,7 +4,7 @@
 #define MAX_DEVICES 100
 #define MAX_STRING_LEN 32
 
-// Holds the collection of results for a single IoT device
+// Holds the aggrigated results of a single IoT device
 typedef struct
 {
     char device_id[MAX_STRING_LEN];
@@ -13,7 +13,7 @@ typedef struct
     int anomaly_count;
 } DeviceRecord;
 
-// The main table that will live in shared memory
+// The main table that lives in shared memory
 typedef struct
 {
     int num_devices;

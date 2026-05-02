@@ -16,7 +16,7 @@
 volatile sig_atomic_t keep_running = 1;
 volatile sig_atomic_t sig_received = 0;
 
-// Signal handler that sets a flag for termination
+// Signal handler that sets a termination flag
 void handle_signal(int sig);
 
 int main(int argc, char *argv[])
@@ -25,8 +25,8 @@ int main(int argc, char *argv[])
     char *output_dir = NULL;
     char *threads = NULL;
     char *queue_size = NULL;
-    char *fifo_path = "/tmp/os_fifo"; // Default FIFO path
-    char *shm_name = "/os_shm";       // Default Shared Memory name
+    char *fifo_path = "/tmp/os_fifo";
+    char *shm_name = "/os_shm";      
 
     int opt;
     // Parse arguments: -i input, -o output, -n threads, -q queue, -f fifo, -s shm
@@ -54,13 +54,13 @@ int main(int argc, char *argv[])
             break;
         default:
             fprintf(stderr, "Usage: %s -i input -o output -n threads -q queue\n", argv[0]);
-            exit(10); // Standard Exit Code 10: Bad command-line arguments
+            exit(10);
         }
     }
 
     if (!input_dir || !output_dir || !threads || !queue_size)
     {
-        fprintf(stderr, "[PID: %d, PPID: %d] Dispatcher: Missing required arguments.\n", 
+        fprintf(stderr, "[PID: %d, PPID: %d] Dispatcher: Missing arguments.\n", 
                 getpid(), getppid());
         exit(10);
     }
@@ -69,7 +69,6 @@ int main(int argc, char *argv[])
             getpid(), getppid(), threads, queue_size);
 
     // Create the FIFO
-    // 0666 gives read/write permissions. EEXIST means it already exists, which is fine.
     if (mkfifo(fifo_path, 0666) == -1 && errno != EEXIST)
     {
         perror("Dispatcher: mkfifo failed");
@@ -194,7 +193,6 @@ int main(int argc, char *argv[])
     sigaction(SIGCHLD, &sa, NULL);
     sigaction(SIGUSR1, &sa, NULL);
 
-    // sigsuspend() loop
     sigset_t empty_mask;
     sigemptyset(&empty_mask);
 
@@ -204,13 +202,12 @@ int main(int argc, char *argv[])
     printf("[PID: %d] Dispatcher: Entering wait loop...\n", getpid());
     while (children_left > 0 && keep_running)
     {
-        // Blocks here without wasting CPU cycles
         sigsuspend(&empty_mask);
 
-        // A signal woke us up. Check if any children died.
         int status;
         pid_t pid;
-        // WNOHANG means don't block if no child has actually exited yet
+
+        // Check if any children died.
         while ((pid = waitpid(-1, &status, WNOHANG)) > 0)
         {
             children_left--;
@@ -226,25 +223,24 @@ int main(int argc, char *argv[])
     {
         printf("\n[PID: %d] Dispatcher: Shutdown signal (%d) received. Terminating children...\n", 
                 getpid(), sig_received);
-        // Forward SIGTERM to children so they can exit gracefully
+
         kill(pid_ingester, SIGTERM);
         kill(pid_processor, SIGTERM);
         kill(pid_reporter, SIGTERM);
 
-        // Wait for them to finish dying
         int status;
         while (waitpid(-1, &status, 0) > 0)
             ;
     }
 
-    // Cleanup IPC Resources (Crucial step!)
+    // Cleanup IPC Resources
     printf("[PID: %d] Dispatcher: Cleaning up resources...\n", getpid());
     unlink(fifo_path);
     munmap(shm_ptr, sizeof(SharedData));
     shm_unlink(shm_name);
     sem_unlink("/os_report_sem");
 
-    // Determine final exit code based on project standard codes
+    // Determine final exit code
     int final_exit = 0;
     if (!keep_running)
     {

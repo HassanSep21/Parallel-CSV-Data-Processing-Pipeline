@@ -1,13 +1,13 @@
-[PID: 41369, PPID: 41347] Processor: Opening FIFO...
-[PID: 41369] Processor: Reader thread started.
-[PID: 41369] Processor: Worker 1 started.
-[PID: 41369] Processor: Worker 2 started.
-[PID: 41369] Processor: Worker 3 started.
-[PID: 41369] Processor: Worker 4 started.
-[PID: 41369] Processor: EOF received. Shutting down workers.
-[PID: 41369] Processor: Worker 2 received EOF. Exiting.
-[PID: 41369] Processor: Worker 3 received EOF. Exiting.
-[PID: 41369] Processor: Worker 4 received EOF. Exiting.
-[PID: 41369] Processor: Worker 1 received EOF. Exiting.
-[PID: 41369] Processor: All threads finished processing.
-[PID: 41369] Processor: Signaled reporter. Exiting.
+[PID: 6716, PPID: 6691] Processor: Opening FIFO...
+[PID: 6716] Processor: Reader thread started.
+[PID: 6716] Processor: Worker 1 started.
+[PID: 6716] Processor: Worker 2 started.
+[PID: 6716] Processor: Worker 3 started.
+[PID: 6716] Processor: Worker 4 started.
+[PID: 6716] Processor: EOF received. Shutting down workers.
+[PID: 6716] Processor: Worker 2 received EOF. Exiting.
+[PID: 6716] Processor: Worker 3 received EOF. Exiting.
+[PID: 6716] Processor: Worker 4 received EOF. Exiting.
+[PID: 6716] Processor: Worker 1 received EOF. Exiting.
+[PID: 6716] Processor: All threads finished processing.
+[PID: 6716] Processor: Signaled reporter. Exiting.

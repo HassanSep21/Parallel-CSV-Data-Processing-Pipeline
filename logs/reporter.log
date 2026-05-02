@@ -1,3 +1,3 @@
-[PID: 41370, PPID: 41347] Reporter: Waiting for processor to finish...
-[PID: 41370] Reporter: Semaphore signaled. Reading shared memory.
-[PID: 41370] Reporter: Report generated. Signaling dispatcher.
+[PID: 6717, PPID: 6691] Reporter: Waiting for processor to finish...
+[PID: 6717] Reporter: Semaphore signaled. Reading shared memory.
+[PID: 6717] Reporter: Report generated. Signaling dispatcher.

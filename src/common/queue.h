@@ -32,7 +32,9 @@ void init_queue(ChunkQueue *q, int capacity)
 
     pthread_mutex_init(&q->mutex, NULL);
 
-    char empty_name[64], full_name[64];
+    char empty_name[64];
+    char full_name[64];
+
     snprintf(empty_name, sizeof(empty_name), "/sem_empty_%d", getpid());
     snprintf(full_name, sizeof(full_name), "/sem_full_%d", getpid());
 
@@ -42,7 +44,6 @@ void init_queue(ChunkQueue *q, int capacity)
     q->sem_empty = sem_open(empty_name, O_CREAT | O_EXCL, 0666, capacity);
     q->sem_full = sem_open(full_name, O_CREAT | O_EXCL, 0666, 0);
 
-    // Unlink immediately
     sem_unlink(empty_name);
     sem_unlink(full_name);
 }

@@ -2,8 +2,8 @@
 Total Devices Tracked: 3
 
 Device: SensorA
-  - Average Reading: 57.70
-  - Total Anomalies: 1
+  - Average Reading: 36.70
+  - Total Anomalies: 0
 
 Device: SensorB
   - Average Reading: 100.28
