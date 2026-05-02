@@ -1,0 +1,15 @@
+--- IoT Sensor Aggregation Report ---
+Total Devices Tracked: 3
+
+Device: SensorA
+  - Average Reading: 57.70
+  - Total Anomalies: 1
+
+Device: SensorB
+  - Average Reading: 100.28
+  - Total Anomalies: 2
+
+Device: SensorC
+  - Average Reading: 36.67
+  - Total Anomalies: 1
+

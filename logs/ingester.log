@@ -1,0 +1,4 @@
+[PID: 41368, PPID: 41347] Ingester: Waiting for processor to open FIFO...
+[PID: 41368] Ingester: FIFO opened.
+[PID: 41368] Ingester: Sent chunk 0 (108 bytes)
+[PID: 41368] Ingester: Sent EOF chunk. Exiting.

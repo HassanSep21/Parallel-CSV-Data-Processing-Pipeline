@@ -1,0 +1,28 @@
+# Compiled executable binaries
+dispatcher
+ingester
+processor
+reporter
+
+# Project-specific temporary files
+.pid
+
+# Compiled object files (if you modify the Makefile later to generate them)
+*.o
+*.out
+*.a
+*.dylib
+*.dSYM
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Common IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*~
