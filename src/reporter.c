@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 
     printf("[PID: %d, PPID: %d] Reporter: Waiting for processor to finish...\n", getpid(), getppid());
 
-    // Open the named semaphore and wait (BLOCK) until processor posts it
+    // Open the named semaphore
     sem_t *sem_report = sem_open("/os_report_sem", O_CREAT, 0666, 0);
     if (sem_report == SEM_FAILED)
     {

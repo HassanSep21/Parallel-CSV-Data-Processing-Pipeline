@@ -1,4 +1,4 @@
 DeviceID,TotalSum,ReadingsCount,Average,Anomalies
-SensorA,183.50,5,36.70,0
+SensorA,288.50,5,57.70,1
 SensorB,401.10,4,100.28,2
 SensorC,146.70,4,36.67,1

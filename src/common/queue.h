@@ -10,6 +10,7 @@
 
 #define MAX_QUEUE_SIZE 1024
 
+// Bounder buffer for passing chunks
 typedef struct
 {
     DataChunk buffer[MAX_QUEUE_SIZE];

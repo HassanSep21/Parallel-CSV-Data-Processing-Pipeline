@@ -15,19 +15,20 @@ int fifo_fd;
 pthread_mutex_t aggregation_mutex = PTHREAD_MUTEX_INITIALIZER;
 int global_num_threads;
 
-// Helper function to find or create a device record in shared memory
+// Finds or creates a device record in shared memory
 DeviceRecord *get_device_record(char *device_id);
 
-// Stubs for our threads
 void *reader_thread(void *arg);
 void *worker_thread(void *arg);
 
 int main(int argc, char *argv[])
 {
-    int num_threads = 0, queue_size = 0;
-    char *fifo_path = NULL, *shm_name = NULL;
+    int num_threads = 0;
+    int queue_size = 0;
+    char *fifo_path = NULL;
+    char *shm_name = NULL;
+    
     int opt;
-
     while ((opt = getopt(argc, argv, "n:q:f:s:")) != -1)
     {
         switch (opt)
@@ -142,6 +143,7 @@ DeviceRecord *get_device_record(char *device_id)
             return &shm_ptr->devices[i];
         }
     }
+
     if (shm_ptr->num_devices < MAX_DEVICES)
     {
         DeviceRecord *new_device = &shm_ptr->devices[shm_ptr->num_devices];

@@ -10,7 +10,7 @@
 int fifo_fd = -1;
 volatile sig_atomic_t keep_running = 1;
 
-// Global statistics variables for SIGUSR1 reporting
+// Global statistics variables
 volatile int files_processed = 0;
 volatile int chunks_sent = 0;
 volatile size_t total_bytes_sent = 0;
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 
     sa_usr1.sa_handler = handle_sigusr1;
     sigemptyset(&sa_usr1.sa_mask);
-    sa_usr1.sa_flags = 0; // No SA_RESTART so it can interrupt blocking calls if needed
+    sa_usr1.sa_flags = 0;
     sigaction(SIGUSR1, &sa_usr1, NULL);
 
     printf("[PID: %d, PPID: %d] Ingester: Waiting for processor to open FIFO...\n", getpid(), getppid());
@@ -109,7 +109,7 @@ int main(int argc, char *argv[])
             break;
         }
 
-        // Update global statistics
+        // Update statistics
         chunks_sent++;
         total_bytes_sent += bytes_read;
 

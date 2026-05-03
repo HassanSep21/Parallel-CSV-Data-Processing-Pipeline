@@ -1,4 +1,4 @@
-[PID: 6715, PPID: 6691] Ingester: Waiting for processor to open FIFO...
-[PID: 6715] Ingester: FIFO opened.
-[PID: 6715] Ingester: Sent chunk 0 (109 bytes)
-[PID: 6715] Ingester: Sent EOF chunk. Exiting.
+[PID: 24063, PPID: 24037] Ingester: Waiting for processor to open FIFO...
+[PID: 24063] Ingester: FIFO opened.
+[PID: 24063] Ingester: Sent chunk 0 (108 bytes)
+[PID: 24063] Ingester: Sent EOF chunk. Exiting.
